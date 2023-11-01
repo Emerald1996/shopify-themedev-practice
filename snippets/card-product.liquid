@@ -1,0 +1,28 @@
+{%- if card_product and card_product != empty -%}
+
+  <a href="{{card_product.url}}" class="card-wrapper product-card-wrapper underline-links-hover">
+    <div class="card">
+      {%- if card_product.featured_media -%}
+        <div class="product__images">
+          {{ card_product.featured_media | image_url: width: 500 | image_tag: loading: 'lazy'}}
+        </div>
+        {%- else -%}
+        <div class="product__image">
+          {{ 'product-1' | placeholder_svg_tag }}
+        </div>
+      {%- endif -%}
+     <h3 class="product__title text-red-500 text-center m-2">{{card_product.title}}</h3>
+     <div class="product__price">
+      {%- if card_product.compare_at_price > compare_at_price-%}
+        <p class="font-bold text-center">{{compare_at_price.price | money_with_currency}} <s>{{card_product.compare_at_price | money_with_currency}}</s></p>
+        {%- else -%}
+        <p class="font-bold text-center">{{card_product.price | money_with_currency}}</p>
+      {%- endif -%}
+     </div>
+    </div>
+  </a>
+  {%- else -%}
+  <div class="card-wrapper product-card-wrapper underline-links-hover">
+    
+  </div>
+{%- endif -%}
